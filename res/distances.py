@@ -1,6 +1,7 @@
 from geopy import distance
 from geopy.geocoders import get_geocoder_for_service
 import json
+import personal_vars
 
 query_cities = ["london", "minsk", "moscow", "warsaw"]
 cities_cache = {}
@@ -35,9 +36,10 @@ def geocode(geocoder, config, query):
 
 for city in query_cities:
     cities_cache.update(
-            {f"{city}": geocode("nominatim",
-                                dict(user_agent="Mozilla/5.0 (X11; Linux x86_64; rv:142.0) Gecko/20100101 Firefox/142.0"),
-                                city)
+            {f"{city}":
+                geocode("nominatim",
+                        dict(user_agent=personal_vars.ua),
+                        city)
              }
             )
 
